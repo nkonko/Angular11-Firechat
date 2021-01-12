@@ -1,0 +1,22 @@
+<div style="position: relative;">
+    <img style="border-radius: 50px; float: right; width: 60px;" src="{{photo}}" alt="">
+    <h1>Chat</h1>
+</div>
+<hr>
+<div class="app-mensajes"id="app-mensajes">
+
+    <div *ngFor="let chat of chatService.chats" 
+    [ngClass]="{'text-right': chatService.usuario.uid == chat.uid}">
+        <span [ngClass]="{'badge badge-primary': chatService.usuario.uid == chat.uid,
+                           'badge badge-success': chatService.usuario.uid != chat.uid}">
+        {{chat.nombre}}
+        </span>
+        <p>{{chat.mensaje}}</p>
+    </div>
+</div>
+
+<input class="form-control pb-0" type="text" 
+        name="mensaje" 
+        [(ngModel)]="mensaje" 
+        (keyup.enter)="enviar_msj()" 
+        placeholder="Enviar mensaje">
